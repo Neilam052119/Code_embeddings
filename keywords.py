@@ -61,98 +61,8 @@ def detect_table_and_ocr(image_path):
                 table_rows.append({"text": text, "confidence": confidence})
         return table_rows
     return []
-# import cv2
-# import pytesseract
-# from pytesseract import Output
-# from PIL import Image
-# import numpy as np
 
-# def preprocess_image(image_path):
-#     # Load the image
-#     image = cv2.imread(image_path)
-#     print("image",image)
-
-#     # Convert image to grayscale
-#     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-#     # Remove noise using a Gaussian blur
-#     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-
-#     # Apply adaptive thresholding to get binary image
-#     binary = cv2.adaptiveThreshold(blurred, 255,
-#                                    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-#                                    cv2.THRESH_BINARY, 11, 2)
-   
-#     return binary
-
-# def ocr_image(image_path, config_options="--psm 6", extract_tables=False):
-#     """
-#     This function takes an image path and performs OCR on it.
-#     :param image_path: Path to the image to be processed.
-#     :param config_options: Configuration options for Tesseract. Default is --psm 6 (for block of text).
-#     :param extract_tables: If set to True, returns structured table-like data.
-#     :return: Extracted text or table (if extract_tables is True).
-#     """
-#     # Preprocess the image for better OCR results
-#     processed_image = preprocess_image(image_path)
-
-#     # Perform OCR on the image
-#     data = pytesseract.image_to_data(processed_image, output_type=Output.DICT, config=config_options)
-
-#     if extract_tables:
-#         # Extract table-like structure if necessary
-#         return extract_table_from_ocr(data)
-
-#     # Otherwise, return the extracted plain text
-#     extracted_text = " ".join(data['text'])
-#     print("extracted_text",extracted_text)
-#     1/0
-
-#     return extracted_text
-
-# def extract_table_from_ocr(ocr_data):
-#     """
-#     Parses the OCR data to extract table-like structure by identifying bounding boxes.
-#     :param ocr_data: The raw data output from pytesseract.
-#     :return: A structured representation of a table (as a 2D array of text).
-#     """
-#     num_boxes = len(ocr_data['level'])
-#     rows = []
-#     current_row = []
-#     previous_y = None
-
-#     for i in range(num_boxes):
-#         # Extract position and text info from OCR data
-#         (x, y, w, h, text) = (ocr_data['left'][i], ocr_data['top'][i],
-#                               ocr_data['width'][i], ocr_data['height'][i],
-#                               ocr_data['text'][i].strip())
-
-#         # Skip empty text
-#         if len(text) == 0:
-#             continue
-
-#         # New line based on vertical position change
-#         if previous_y is None or abs(y - previous_y) > 10:  # Adjust the threshold as needed
-#             if len(current_row) > 0:
-#                 rows.append(current_row)
-#             current_row = []
-       
-#         current_row.append(text)
-#         previous_y = y
-
-#     if len(current_row) > 0:
-#         rows.append(current_row)
-
-#     return rows
-
-# # Example Usage
-# image_path = r"C:\Users\neela\OneDrive\Desktop\Code_embeddings\Delhi\JULY\Extracted_Images_Delhi-July-01-2024\Delhi_01Jul2024_crop_image-17.jpeg\articles\im.jpg.jpg"
-# ocr_text = ocr_image(image_path, extract_tables=True)  # Extracts tables from the image
-# #print(ocr_text)
-# # Split by common separators (comma, semicolon, question mark, etc.)
 separators = r'[ ,;?!]+'
-
-
 # Function to check for keywords in text data using fuzzy matching
 def check_for_keywords(text_data, keywords, threshold=80):
     for entry in text_data:
@@ -245,4 +155,7 @@ for image_file in os.listdir(input_folder):
 script_end_time = datetime.now()
 print(f"Script execution time: {script_end_time - script_start_time}")
 
-print("hello-world - test git commit with app")
+#print("hello-world - test git commit with app")
+
+
+

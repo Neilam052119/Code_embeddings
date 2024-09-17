@@ -2,3 +2,6 @@
 .output/
 .keywords_org.py
 .Result1/
+.keywords copy.py
+.trycode.py
+
